@@ -1,7 +1,6 @@
 import os
 import streamlit as st
 
-from dotenv import load_dotenv
 from langchain_teddynote import logging
 from langchain_core.prompts import PromptTemplate
 from langchain_core.messages import ChatMessage
