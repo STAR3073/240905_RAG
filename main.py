@@ -55,14 +55,14 @@ with st.sidebar:
 
 # 파일을 캐시 저장(시간이 오래 걸리는 작업을 처리할 예정)
 @st.cache_resource(show_spinner="업로드한 파일을 처리 중입니다...")
-def embed_file(file):
+def embed_file(file, api_key):
     # 업로드한 파일을 캐시 디렉토리에 저장합니다.
     file_content = file.read()
     file_path = f"./.cache/files/{file.name}"
     with open(file_path, "wb") as f:
         f.write(file_content)
 
-    retriever = rag_setup(file_path, chunk_size=300, chunk_overlap=50)
+    retriever = rag_setup(file_path, chunk_size=300, chunk_overlap=50, api_key)
 
     return retriever
 
@@ -70,7 +70,7 @@ def embed_file(file):
 # 파일 업로드 되었을 때
 if uploaded_file:
     retriever = embed_file(uploaded_file)
-    st.session_state["rag_chain"] = create_rag_chain(retriever)
+    st.session_state["rag_chain"] = create_rag_chain(retriever, api_key)
 
 # 이전까지의 대화를 출력
 print_history()
