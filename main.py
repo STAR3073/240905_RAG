@@ -1,16 +1,12 @@
 import os
 import streamlit as st
 
-from langchain_teddynote import logging
 from langchain_core.prompts import PromptTemplate
 from langchain_core.messages import ChatMessage
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
 from rag import rag_setup, create_rag_chain
 
-
-# API KEY 정보로드
-#load_dotenv()
 
 api_key = st.secrets["OPENAI_API_KEY"]
 
