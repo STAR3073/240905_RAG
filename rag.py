@@ -12,7 +12,7 @@ from langchain import hub
 import bs4
 
 
-def rag_setup(file_path, chunk_size=1000, chunk_overlap=50, k=4, weight=0.5):
+def rag_setup(file_path, chunk_size=1000, chunk_overlap=50, k=4, weight=0.5, api_key):
     # 단계 1: 문서 로드(Load Documents)
     loader = PyMuPDFLoader(file_path)
     docs = loader.load()
@@ -24,7 +24,7 @@ def rag_setup(file_path, chunk_size=1000, chunk_overlap=50, k=4, weight=0.5):
     split_documents = text_splitter.split_documents(docs)
 
     # 단계 3: 임베딩(Embedding) 생성
-    embeddings = OpenAIEmbeddings()
+    embeddings = OpenAIEmbeddings(api_key=api_key)
 
     # 단계 4: DB 생성(Create DB) 및 저장
     # 벡터스토어를 생성합니다.
@@ -49,7 +49,7 @@ def rag_setup(file_path, chunk_size=1000, chunk_overlap=50, k=4, weight=0.5):
 
 
 
-def create_rag_chain(retriever, model_name="gpt-4o"):
+def create_rag_chain(retriever, model_name="gpt-4o-mini", api_key):
     # 단계 6: 프롬프트 생성(Create Prompt)
     # 프롬프트를 생성합니다.
     prompt = PromptTemplate.from_template(
@@ -70,7 +70,7 @@ def create_rag_chain(retriever, model_name="gpt-4o"):
 
     # 단계 7: 언어모델(LLM) 생성
     # 모델(LLM) 을 생성합니다.
-    llm = ChatOpenAI(model_name=model_name, temperature=0)
+    llm = ChatOpenAI(model_name=model_name, temperature=0, api_key=api_key)
 
     # 단계 8: 체인(Chain) 생성
     chain = (
