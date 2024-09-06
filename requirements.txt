@@ -2,4 +2,5 @@ langchain-core
 langchain_openai
 langchain_text_splitters
 langchain_community
+pymupdf
 bs4
