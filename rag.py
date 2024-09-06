@@ -11,6 +11,8 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain import hub
 import bs4
 
+api_key = st.secrets["OPENAI_API_KEY"]
+
 
 def rag_setup(file_path, chunk_size=1000, chunk_overlap=50, k=4, weight=0.5, api_key=api_key):
     # 단계 1: 문서 로드(Load Documents)
