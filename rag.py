@@ -12,7 +12,7 @@ from langchain import hub
 import bs4
 
 
-def rag_setup(file_path, chunk_size=1000, chunk_overlap=50, k=4, weight=0.5, api_key):
+def rag_setup(file_path, chunk_size=1000, chunk_overlap=50, k=4, weight=0.5, api_key=api_key):
     # 단계 1: 문서 로드(Load Documents)
     loader = PyMuPDFLoader(file_path)
     docs = loader.load()
@@ -49,7 +49,7 @@ def rag_setup(file_path, chunk_size=1000, chunk_overlap=50, k=4, weight=0.5, api
 
 
 
-def create_rag_chain(retriever, model_name="gpt-4o-mini", api_key):
+def create_rag_chain(retriever, model_name="gpt-4o-mini", api_key=api_key):
     # 단계 6: 프롬프트 생성(Create Prompt)
     # 프롬프트를 생성합니다.
     prompt = PromptTemplate.from_template(
