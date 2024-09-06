@@ -62,7 +62,7 @@ def embed_file(file, api_key):
     with open(file_path, "wb") as f:
         f.write(file_content)
 
-    retriever = rag_setup(file_path, chunk_size=300, chunk_overlap=50, api_key)
+    retriever = rag_setup(file_path, chunk_size=300, chunk_overlap=50, api_key=api_key)
 
     return retriever
 
@@ -70,7 +70,7 @@ def embed_file(file, api_key):
 # 파일 업로드 되었을 때
 if uploaded_file:
     retriever = embed_file(uploaded_file)
-    st.session_state["rag_chain"] = create_rag_chain(retriever, api_key)
+    st.session_state["rag_chain"] = create_rag_chain(retriever, api_key=api_key)
 
 # 이전까지의 대화를 출력
 print_history()
