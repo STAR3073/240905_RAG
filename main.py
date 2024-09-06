@@ -55,7 +55,7 @@ with st.sidebar:
 
 # 파일을 캐시 저장(시간이 오래 걸리는 작업을 처리할 예정)
 @st.cache_resource(show_spinner="업로드한 파일을 처리 중입니다...")
-def embed_file(file, api_key):
+def embed_file(file):
     # 업로드한 파일을 캐시 디렉토리에 저장합니다.
     file_content = file.read()
     file_path = f"./.cache/files/{file.name}"
