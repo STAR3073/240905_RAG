@@ -10,6 +10,7 @@ from langchain.retrievers import BM25Retriever, EnsembleRetriever
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain import hub
 import bs4
+import streamlit as st
 
 api_key = st.secrets["OPENAI_API_KEY"]
 
